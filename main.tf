@@ -62,6 +62,13 @@ resource "aws_s3_bucket_acl" "default" {
   acl    = var.acl
 }
 
+resource "aws_s3_bucket_ownership_controls" "default" {
+  count  = var.is_bucket_ownership_enforced ? 1 : 0
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
+}
+
 resource "aws_s3_bucket_cors_configuration" "default" {
   for_each = local.cors_rule
   bucket   = aws_s3_bucket.default.bucket

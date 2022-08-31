@@ -47,10 +47,15 @@ variable "ignore_public_acls" {
 
 variable "is_acl_enabled" {
   type        = bool
-  default     = false
-  description = "Whether ACLs need to be enabled for a bucket"
+  default     = true
+  description = "Whether ACLs should be enabled for S3 buckets"
 }
 
+variable "is_bucket_ownership_enforced" {
+  type        = bool
+  default     = false
+  description = "Whether ACLs should be disabled for S3 bucket and BucketOwnerEnforced object ownership is applied"
+}
 
 variable "kms_key_arn" {
   type        = string
